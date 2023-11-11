@@ -7,7 +7,8 @@ export default class AccountType {
     return this.name === 'premium';
   }
 
-  overdraftCharge(daysOverdrawn) {
+  overdraftCharge(account) {
+    const { daysOverdrawn } = account;
     if (this.isPremium) {
       const baseCharge = 10;
       if (daysOverdrawn <= 7) return baseCharge;

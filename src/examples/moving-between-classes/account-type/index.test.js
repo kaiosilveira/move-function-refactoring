@@ -1,6 +1,8 @@
 import AccountType from '.';
+import Account from '../account';
 
 describe('AccountType', () => {
+  const accountNumber = 123;
   const regularAccountType = new AccountType('regular');
   const premiumAccountType = new AccountType('premium');
 
@@ -17,17 +19,23 @@ describe('AccountType', () => {
   describe('overdraftCharge', () => {
     describe('prmium accounts', () => {
       it('should not charge for the first seven days on overdraft if it is a premium account', () => {
-        expect(premiumAccountType.overdraftCharge(7)).toEqual(10);
+        const daysOverdrawn = 7;
+        const account = new Account(accountNumber, premiumAccountType, daysOverdrawn);
+        expect(premiumAccountType.overdraftCharge(account)).toEqual(10);
       });
 
       it('should charge a daily amount after the seven initial days on overdraft', () => {
-        expect(premiumAccountType.overdraftCharge(8)).toEqual(10.85);
+        const daysOverdrawn = 8;
+        const account = new Account(accountNumber, premiumAccountType, daysOverdrawn);
+        expect(premiumAccountType.overdraftCharge(account)).toEqual(10.85);
       });
     });
 
     describe('regular accounts', () => {
       it('should charge the base overdraft charge plus a daily amount for each day in overdraft', () => {
-        expect(regularAccountType.overdraftCharge(1)).toEqual(1.75);
+        const daysOverdrawn = 1;
+        const account = new Account(accountNumber, regularAccountType, daysOverdrawn);
+        expect(regularAccountType.overdraftCharge(account)).toEqual(1.75);
       });
     });
   });
