@@ -1,4 +1,4 @@
-function top_calculateDistance() {
+function top_calculateDistance(points) {
   let result = 0;
   for (let i = 1; i < points.length; i += 1) {
     result += distance(points[i - 1], points[i]);
