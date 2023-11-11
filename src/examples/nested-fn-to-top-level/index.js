@@ -34,7 +34,7 @@ export default function trackSummary(points) {
   }
 
   const totalTime = calculateTime();
-  const totalDistance = calculateDistance();
+  const totalDistance = top_calculateDistance(points);
   const pace = Number((totalTime / 60 / totalDistance).toFixed(2));
 
   return { pace, time: totalTime, distance: totalDistance };
