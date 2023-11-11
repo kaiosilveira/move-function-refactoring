@@ -1,3 +1,11 @@
+function top_calculateDistance() {
+  let result = 0;
+  for (let i = 1; i < points.length; i += 1) {
+    result += distance(points[i - 1], points[i]);
+  }
+  return result;
+}
+
 export default function trackSummary(points) {
   function calculateTime() {
     return points.map(p => p.time).reduce((t, p) => t + p, 0);
