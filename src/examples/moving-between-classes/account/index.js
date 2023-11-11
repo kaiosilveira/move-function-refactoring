@@ -7,11 +7,7 @@ export default class Account {
 
   get bankCharge() {
     let result = 4.5;
-    if (this.daysOverdrawn > 0) result += this.overdraftCharge;
+    if (this.daysOverdrawn > 0) result += this.type.overdraftCharge(this.daysOverdrawn);
     return result;
-  }
-
-  get overdraftCharge() {
-    return this.type.overdraftCharge(this.daysOverdrawn);
   }
 }
