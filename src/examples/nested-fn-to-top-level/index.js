@@ -1,4 +1,4 @@
-function top_calculateDistance(points) {
+function totalDistance(points) {
   function radians(degrees) {
     return (degrees * Math.PI) / 180;
   }
@@ -30,7 +30,7 @@ export default function trackSummary(points) {
   }
 
   const totalTime = calculateTime();
-  const pace = Number((totalTime / 60 / top_calculateDistance(points)).toFixed(2));
+  const pace = Number((totalTime / 60 / totalDistance(points)).toFixed(2));
 
-  return { pace, time: totalTime, distance: top_calculateDistance(points) };
+  return { pace, time: totalTime, distance: totalDistance(points) };
 }
