@@ -12,12 +12,6 @@ export default class Account {
   }
 
   get overdraftCharge() {
-    if (this.type.isPremium) {
-      const baseCharge = 10;
-      if (this.daysOverdrawn <= 7) return baseCharge;
-      return baseCharge + (this.daysOverdrawn - 7) * 0.85;
-    }
-
-    return this.daysOverdrawn * 1.75;
+    return this.type.overdraftCharge(this.daysOverdrawn);
   }
 }
